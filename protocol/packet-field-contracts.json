@@ -478,6 +478,49 @@
   },
   "contracts": [
     {
+      "name": "RP_STATS_REQUEST",
+      "direction": "client_to_server",
+      "header": 6040,
+      "csharp": {
+        "symbol": "StatsRequestHandler",
+        "className": "StatsRequestHandler",
+        "path": "../DistrictRP.Server/Modules/Stats/StatsModule.cs"
+      },
+      "typescript": {
+        "symbol": "RP_STATS_REQUEST",
+        "className": "RpStatsRequestComposer",
+        "path": "packages/communication/src/messages/outgoing/rp/RpStatsRequestComposer.ts"
+      },
+      "fields": []
+    },
+    {
+      "name": "RP_STATS",
+      "direction": "server_to_client",
+      "header": 6040,
+      "csharp": {
+        "symbol": "StatsComposer",
+        "className": "StatsComposer",
+        "path": "../DistrictRP.Server/Modules/Stats/StatsComposer.cs"
+      },
+      "typescript": {
+        "symbol": "RP_STATS",
+        "className": "RpStatsParser",
+        "path": "packages/communication/src/messages/parser/rp/RpStatsParser.ts"
+      },
+      "fields": [
+        {
+          "kind": "scalar",
+          "type": "int",
+          "name": "health"
+        },
+        {
+          "kind": "scalar",
+          "type": "int",
+          "name": "energy"
+        }
+      ]
+    },
+    {
       "name": "GAME2GETACCOUNTGAMESTATUSMESSAGE",
       "direction": "client_to_server",
       "header": 2040,

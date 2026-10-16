@@ -27,6 +27,7 @@ import { WiredArrayInspectionDataEvent, WiredArrayInspectionRequestComposer, Wir
 import { WiredMovementsEvent } from './messages';
 import { ConfInvisStateMessageEvent } from './messages';
 import { HanditemBlockStateMessageEvent } from './messages';
+import { RpStatsEvent, RpStatsRequestComposer } from './messages';
 
 
 import { CatalogProductMetadataEvent } from './messages/incoming/catalog/metadata';
@@ -57,6 +58,7 @@ export class VoltMessages implements IMessageConfiguration
 
     private registerEvents(): void
     {
+        this._events.set(IncomingHeader.RP_STATS, RpStatsEvent);
         // ADVERTISEMENT
         this._events.set(IncomingHeader.INTERSTITIAL_MESSAGE, InterstitialMessageEvent);
         this._events.set(IncomingHeader.ROOM_AD_ERROR, RoomAdErrorEvent);
@@ -791,6 +793,7 @@ export class VoltMessages implements IMessageConfiguration
 
     private registerComposers(): void
     {
+        this._composers.set(OutgoingHeader.RP_STATS_REQUEST, RpStatsRequestComposer);
         this._events.set(IncomingHeader.ALLOWED_CHAT_STYLES, AllowedChatStylesMessageEvent);
         this._events.set(IncomingHeader.CREATABLE_ROOM_MODELS, CreatableRoomModelsMessageEvent);
 

@@ -1,5 +1,6 @@
 export class IncomingHeader
 {
+    public static RP_STATS = 6040;
     public static WIRED_VARIABLE_INSPECTION_DATA = 9483;
     public static WIRED_USER_VARIABLES_DATA_64 = 9480;
     public static WIRED_VARIABLE_HOLDERS_64 = 9481;

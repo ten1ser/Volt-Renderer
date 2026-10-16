@@ -79,3 +79,4 @@ export * from './user/inventory/subscription';
 export * from './user/settings';
 export * from './userclassification';
 export * from './habbicons';
+export * from './rp';
