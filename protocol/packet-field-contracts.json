@@ -478,6 +478,23 @@
   },
   "contracts": [
     {
+      "name": "RP_CITY_REQUEST", "direction": "client_to_server", "header": 6050,
+      "csharp": { "symbol": "CityRequestHandler", "className": "CityRequestHandler", "path": "../DistrictRP.Server/Modules/City/CityModule.cs" },
+      "typescript": { "symbol": "RP_CITY_REQUEST", "className": "RpCityRequestComposer", "path": "packages/communication/src/messages/outgoing/rp/RpCityRequestComposer.ts" },
+      "fields": []
+    },
+    {
+      "name": "RP_CITY", "direction": "server_to_client", "header": 6050,
+      "csharp": { "symbol": "CityStatusComposer", "className": "CityStatusComposer", "path": "../DistrictRP.Server/Modules/City/CityStatus.cs" },
+      "typescript": { "symbol": "RP_CITY", "className": "RpCityParser", "path": "packages/communication/src/messages/parser/rp/RpCityParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "cycleElapsedMs" },
+        { "kind": "scalar", "type": "int", "name": "cycleDurationMs" },
+        { "kind": "scalar", "type": "int", "name": "dayDurationMs" },
+        { "kind": "scalar", "type": "int", "name": "onlinePlayers" }
+      ]
+    },
+    {
       "name": "RP_STATS_REQUEST",
       "direction": "client_to_server",
       "header": 6040,
