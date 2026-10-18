@@ -4,6 +4,16 @@ import { RoomContentLoader } from '../RoomContentLoader';
 
 describe('RoomContentLoader', () =>
 {
+    it('uses numbered poster names and ignores sticky-note quantity extras', () =>
+    {
+        const loader = new RoomContentLoader();
+        loader.processFurnitureData([
+            { type: FurnitureType.WALL, id: 1, className: 'poster', revision: 1 } as any,
+            { type: FurnitureType.WALL, id: 2, className: 'post.it.vd', revision: 1 } as any
+        ]);
+        expect(loader.getFurnitureWallNameForTypeId(1, '2')).toBe('poster2');
+        expect(loader.getFurnitureWallNameForTypeId(2, '20')).toBe('post_it_vd');
+    });
     it('categorizes indexed-color wall item object names as wall furni', () =>
     {
         const loader = new RoomContentLoader();
