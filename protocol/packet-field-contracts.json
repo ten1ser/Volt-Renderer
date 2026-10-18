@@ -538,6 +538,49 @@
       ]
     },
     {
+      "name": "RP_TARGET_STATS_REQUEST",
+      "direction": "client_to_server",
+      "header": 6041,
+      "csharp": {
+        "symbol": "TargetStatsRequestHandler",
+        "className": "TargetStatsRequestHandler",
+        "path": "../DistrictRP.Server/Modules/Stats/StatsModule.cs"
+      },
+      "typescript": {
+        "symbol": "RP_TARGET_STATS_REQUEST",
+        "className": "RpTargetStatsRequestComposer",
+        "path": "packages/communication/src/messages/outgoing/rp/RpTargetStatsRequestComposer.ts"
+      },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "roomId" },
+        { "kind": "scalar", "type": "int", "name": "targetUserId" }
+      ]
+    },
+    {
+      "name": "RP_TARGET_STATS",
+      "direction": "server_to_client",
+      "header": 6041,
+      "csharp": {
+        "symbol": "TargetStatsComposer",
+        "className": "TargetStatsComposer",
+        "path": "../DistrictRP.Server/Modules/Stats/TargetStatsComposer.cs"
+      },
+      "typescript": {
+        "symbol": "RP_TARGET_STATS",
+        "className": "RpTargetStatsParser",
+        "path": "packages/communication/src/messages/parser/rp/RpTargetStatsParser.ts"
+      },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "roomId" },
+        { "kind": "scalar", "type": "int", "name": "targetUserId" },
+        { "kind": "scalar", "type": "int", "name": "available" },
+        { "kind": "scalar", "type": "int", "name": "health" },
+        { "kind": "scalar", "type": "int", "name": "energy" }
+      ]
+    },
+    {
       "name": "GAME2GETACCOUNTGAMESTATUSMESSAGE",
       "direction": "client_to_server",
       "header": 2040,

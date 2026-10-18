@@ -28,6 +28,7 @@ import { WiredMovementsEvent } from './messages';
 import { ConfInvisStateMessageEvent } from './messages';
 import { HanditemBlockStateMessageEvent } from './messages';
 import { RpStatsEvent, RpStatsRequestComposer } from './messages';
+import { RpTargetStatsEvent, RpTargetStatsRequestComposer } from './messages';
 import { RpCityEvent, RpCityRequestComposer } from './messages';
 
 
@@ -60,6 +61,7 @@ export class VoltMessages implements IMessageConfiguration
     private registerEvents(): void
     {
         this._events.set(IncomingHeader.RP_STATS, RpStatsEvent);
+        this._events.set(IncomingHeader.RP_TARGET_STATS, RpTargetStatsEvent);
         this._events.set(IncomingHeader.RP_CITY, RpCityEvent);
         // ADVERTISEMENT
         this._events.set(IncomingHeader.INTERSTITIAL_MESSAGE, InterstitialMessageEvent);
@@ -796,6 +798,7 @@ export class VoltMessages implements IMessageConfiguration
     private registerComposers(): void
     {
         this._composers.set(OutgoingHeader.RP_STATS_REQUEST, RpStatsRequestComposer);
+        this._composers.set(OutgoingHeader.RP_TARGET_STATS_REQUEST, RpTargetStatsRequestComposer);
         this._composers.set(OutgoingHeader.RP_CITY_REQUEST, RpCityRequestComposer);
         this._events.set(IncomingHeader.ALLOWED_CHAT_STYLES, AllowedChatStylesMessageEvent);
         this._events.set(IncomingHeader.CREATABLE_ROOM_MODELS, CreatableRoomModelsMessageEvent);

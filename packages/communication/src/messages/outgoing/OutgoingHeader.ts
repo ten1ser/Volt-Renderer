@@ -1,6 +1,7 @@
 export class OutgoingHeader
 {
     public static RP_STATS_REQUEST = 6040;
+    public static RP_TARGET_STATS_REQUEST = 6041;
     public static RP_CITY_REQUEST = 6050;
     public static WIRED_VARIABLE_INSPECTION_REQUEST = 10112;
     public static WIRED_USER_VARIABLES_REQUEST_64 = 10113;
