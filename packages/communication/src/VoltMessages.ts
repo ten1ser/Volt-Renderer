@@ -30,6 +30,8 @@ import { HanditemBlockStateMessageEvent } from './messages';
 import { RpStatsEvent, RpStatsRequestComposer } from './messages';
 import { RpTargetStatsEvent, RpTargetStatsRequestComposer } from './messages';
 import { RpCityEvent, RpCityRequestComposer } from './messages';
+import { RpHospitalTreatmentEvent, RpHospitalTreatmentRequestComposer } from './messages';
+import { RpBusinessEvent, RpBusinessRequestComposer } from './messages';
 
 
 import { CatalogProductMetadataEvent } from './messages/incoming/catalog/metadata';
@@ -63,6 +65,8 @@ export class VoltMessages implements IMessageConfiguration
         this._events.set(IncomingHeader.RP_STATS, RpStatsEvent);
         this._events.set(IncomingHeader.RP_TARGET_STATS, RpTargetStatsEvent);
         this._events.set(IncomingHeader.RP_CITY, RpCityEvent);
+        this._events.set(IncomingHeader.RP_HOSPITAL_TREATMENT, RpHospitalTreatmentEvent);
+        this._events.set(IncomingHeader.RP_BUSINESS, RpBusinessEvent);
         // ADVERTISEMENT
         this._events.set(IncomingHeader.INTERSTITIAL_MESSAGE, InterstitialMessageEvent);
         this._events.set(IncomingHeader.ROOM_AD_ERROR, RoomAdErrorEvent);
@@ -800,6 +804,8 @@ export class VoltMessages implements IMessageConfiguration
         this._composers.set(OutgoingHeader.RP_STATS_REQUEST, RpStatsRequestComposer);
         this._composers.set(OutgoingHeader.RP_TARGET_STATS_REQUEST, RpTargetStatsRequestComposer);
         this._composers.set(OutgoingHeader.RP_CITY_REQUEST, RpCityRequestComposer);
+        this._composers.set(OutgoingHeader.RP_HOSPITAL_TREATMENT_REQUEST, RpHospitalTreatmentRequestComposer);
+        this._composers.set(OutgoingHeader.RP_BUSINESS_REQUEST, RpBusinessRequestComposer);
         this._events.set(IncomingHeader.ALLOWED_CHAT_STYLES, AllowedChatStylesMessageEvent);
         this._events.set(IncomingHeader.CREATABLE_ROOM_MODELS, CreatableRoomModelsMessageEvent);
 

@@ -495,6 +495,69 @@
       ]
     },
     {
+      "name": "RP_BUSINESS_REQUEST",
+      "direction": "client_to_server",
+      "header": 6070,
+      "csharp": { "symbol": "BusinessRequestHandler", "className": "BusinessRequestHandler", "path": "../DistrictRP.Server/Modules/Jobs/JobsModule.cs" },
+      "typescript": { "symbol": "RP_BUSINESS_REQUEST", "className": "RpBusinessRequestComposer", "path": "packages/communication/src/messages/outgoing/rp/RpBusinessRequestComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "action" },
+        { "kind": "scalar", "type": "int", "name": "targetUserId" },
+        { "kind": "scalar", "type": "int", "name": "level" },
+        { "kind": "scalar", "type": "int", "name": "page" },
+        { "kind": "scalar", "type": "int", "name": "rankFilter" },
+        { "kind": "scalar", "type": "string", "name": "search" }
+      ]
+    },
+    {
+      "name": "RP_BUSINESS",
+      "direction": "server_to_client",
+      "header": 6070,
+      "csharp": { "symbol": "BusinessComposer", "className": "BusinessComposer", "path": "../DistrictRP.Server/Modules/Jobs/BusinessDirectory.cs" },
+      "typescript": { "symbol": "RP_BUSINESS", "className": "RpBusinessParser", "path": "packages/communication/src/messages/parser/rp/RpBusinessParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "string", "name": "json" }
+      ]
+    },
+    {
+      "name": "RP_HOSPITAL_TREATMENT_REQUEST",
+      "direction": "client_to_server",
+      "header": 6060,
+      "csharp": {
+        "symbol": "HospitalStatusRequestHandler",
+        "className": "HospitalStatusRequestHandler",
+        "path": "../DistrictRP.Server/Modules/Recovery/RecoveryModule.cs"
+      },
+      "typescript": {
+        "symbol": "RP_HOSPITAL_TREATMENT_REQUEST",
+        "className": "RpHospitalTreatmentRequestComposer",
+        "path": "packages/communication/src/messages/outgoing/rp/RpHospitalTreatmentRequestComposer.ts"
+      },
+      "fields": []
+    },
+    {
+      "name": "RP_HOSPITAL_TREATMENT",
+      "direction": "server_to_client",
+      "header": 6060,
+      "csharp": {
+        "symbol": "HospitalTreatmentStatusComposer",
+        "className": "HospitalTreatmentStatusComposer",
+        "path": "../DistrictRP.Server/Modules/Recovery/HospitalTreatmentStatus.cs"
+      },
+      "typescript": {
+        "symbol": "RP_HOSPITAL_TREATMENT",
+        "className": "RpHospitalTreatmentParser",
+        "path": "packages/communication/src/messages/parser/rp/RpHospitalTreatmentParser.ts"
+      },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "phase" },
+        { "kind": "scalar", "type": "int", "name": "progress" },
+        { "kind": "scalar", "type": "int", "name": "remainingMs" }
+      ]
+    },
+    {
       "name": "RP_STATS_REQUEST",
       "direction": "client_to_server",
       "header": 6040,
