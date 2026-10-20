@@ -5,6 +5,7 @@ export class OutgoingHeader
     public static RP_CITY_REQUEST = 6050;
     public static RP_HOSPITAL_TREATMENT_REQUEST = 6060;
     public static RP_BUSINESS_REQUEST = 6070;
+    public static RP_HEAL_RESPONSE = 6071;
     public static WIRED_VARIABLE_INSPECTION_REQUEST = 10112;
     public static WIRED_USER_VARIABLES_REQUEST_64 = 10113;
     public static WIRED_VARIABLE_HOLDERS_REQUEST_64 = 10114;

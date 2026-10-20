@@ -522,6 +522,31 @@
       ]
     },
     {
+      "name": "RP_HEAL_RESPONSE",
+      "direction": "client_to_server",
+      "header": 6071,
+      "csharp": { "symbol": "HealResponseHandler", "className": "HealResponseHandler", "path": "../DistrictRP.Server/Modules/Jobs/JobsModule.cs" },
+      "typescript": { "symbol": "RP_HEAL_RESPONSE", "className": "RpHealResponseComposer", "path": "packages/communication/src/messages/outgoing/rp/RpHealResponseComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "string", "name": "offerId" },
+        { "kind": "scalar", "type": "int", "name": "accepted" }
+      ]
+    },
+    {
+      "name": "RP_HEAL_OFFER",
+      "direction": "server_to_client",
+      "header": 6071,
+      "csharp": { "symbol": "HospitalHealComposer", "className": "HospitalHealComposer", "path": "../DistrictRP.Server/Modules/Jobs/HospitalHealComposer.cs" },
+      "typescript": { "symbol": "RP_HEAL_OFFER", "className": "RpHealOfferParser", "path": "packages/communication/src/messages/parser/rp/RpHealOfferParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "state" },
+        { "kind": "scalar", "type": "string", "name": "offerId" },
+        { "kind": "scalar", "type": "string", "name": "healerName" },
+        { "kind": "scalar", "type": "int", "name": "price" },
+        { "kind": "scalar", "type": "int", "name": "expiresInMs" }
+      ]
+    },
+    {
       "name": "RP_HOSPITAL_TREATMENT_REQUEST",
       "direction": "client_to_server",
       "header": 6060,
