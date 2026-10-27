@@ -4,3 +4,4 @@ export * from './RpCityParser';
 export * from './RpHospitalTreatmentParser';
 export * from './RpBusinessParser';
 export * from './RpHealOfferParser';
+export * from './RpInventoryParser';

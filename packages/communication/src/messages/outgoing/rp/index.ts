@@ -4,3 +4,4 @@ export * from './RpCityRequestComposer';
 export * from './RpHospitalTreatmentRequestComposer';
 export * from './RpBusinessRequestComposer';
 export * from './RpHealResponseComposer';
+export * from './RpInventoryRequestComposer';
