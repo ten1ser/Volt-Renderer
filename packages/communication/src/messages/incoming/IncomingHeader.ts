@@ -7,6 +7,13 @@ export class IncomingHeader
     public static RP_BUSINESS = 6070;
     public static RP_HEAL_OFFER = 6071;
     public static RP_INVENTORY = 6080;
+    public static RP_PROFILE = 6090;
+    public static RP_PHONE_STATUS = 6100;
+    public static RP_PHONE_CALL = 6101;
+    public static RP_PHONE_OFFER = 6102;
+    public static RP_PHONE_CALL_LINE = 6103;
+    public static RP_PHONE_HISTORY = 6104;
+    public static RP_PHONE_LOCATION = 6105;
     public static WIRED_VARIABLE_INSPECTION_DATA = 9483;
     public static WIRED_USER_VARIABLES_DATA_64 = 9480;
     public static WIRED_VARIABLE_HOLDERS_64 = 9481;

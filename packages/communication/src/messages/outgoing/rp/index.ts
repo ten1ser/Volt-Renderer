@@ -5,3 +5,7 @@ export * from './RpHospitalTreatmentRequestComposer';
 export * from './RpBusinessRequestComposer';
 export * from './RpHealResponseComposer';
 export * from './RpInventoryRequestComposer';
+export * from './RpProfileRequestComposer';
+export * from './RpPhoneRequestComposer';
+export * from './RpPhoneCallActionComposer';
+export * from './RpPhoneOfferResponseComposer';

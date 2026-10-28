@@ -70,6 +70,15 @@
         "stability": "stable"
       },
       {
+        "name": "custom_gameplay_extended_client",
+        "direction": "client_to_server",
+        "start": 6100,
+        "end": 6199,
+        "origin": "custom",
+        "feature": "custom_gameplay",
+        "stability": "stable"
+      },
+      {
         "name": "social_client",
         "direction": "client_to_server",
         "start": 7000,
@@ -155,6 +164,15 @@
         "direction": "server_to_client",
         "start": 6000,
         "end": 6099,
+        "origin": "custom",
+        "feature": "custom_gameplay",
+        "stability": "stable"
+      },
+      {
+        "name": "custom_gameplay_extended_server",
+        "direction": "server_to_client",
+        "start": 6100,
+        "end": 6199,
         "origin": "custom",
         "feature": "custom_gameplay",
         "stability": "stable"
@@ -582,6 +600,173 @@
             { "kind": "scalar", "type": "int", "name": "maxDurability" }
           ]
         }
+      ]
+    },
+    {
+      "name": "RP_PROFILE_REQUEST",
+      "direction": "client_to_server",
+      "header": 6090,
+      "csharp": { "symbol": "ProfileRequestHandler", "className": "ProfileRequestHandler", "path": "../DistrictRP.Server/Modules/Profile/ProfileModule.cs" },
+      "typescript": { "symbol": "RP_PROFILE_REQUEST", "className": "RpProfileRequestComposer", "path": "packages/communication/src/messages/outgoing/rp/RpProfileRequestComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "userId" }
+      ]
+    },
+    {
+      "name": "RP_PROFILE",
+      "direction": "server_to_client",
+      "header": 6090,
+      "csharp": { "symbol": "ProfileComposer", "className": "ProfileComposer", "path": "../DistrictRP.Server/Modules/Profile/ProfileModule.cs" },
+      "typescript": { "symbol": "RP_PROFILE", "className": "RpProfileParser", "path": "packages/communication/src/messages/parser/rp/RpProfileParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "userId" },
+        { "kind": "scalar", "type": "int", "name": "available" },
+        { "kind": "scalar", "type": "string", "name": "gang" },
+        { "kind": "scalar", "type": "string", "name": "job" },
+        { "kind": "scalar", "type": "string", "name": "rank" },
+        { "kind": "scalar", "type": "int", "name": "kills" },
+        { "kind": "scalar", "type": "int", "name": "deaths" },
+        { "kind": "scalar", "type": "int", "name": "punchesThrown" },
+        { "kind": "scalar", "type": "int", "name": "punchesMissed" },
+        { "kind": "scalar", "type": "int", "name": "punchesReceived" },
+        { "kind": "scalar", "type": "int", "name": "timesJailed" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_REQUEST",
+      "direction": "client_to_server",
+      "header": 6100,
+      "csharp": { "symbol": "StatusHandler", "className": "StatusHandler", "path": "../DistrictRP.Server/Modules/Phone/PhoneModule.cs" },
+      "typescript": { "symbol": "RP_PHONE_REQUEST", "className": "RpPhoneRequestComposer", "path": "packages/communication/src/messages/outgoing/rp/RpPhoneRequestComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "action" },
+        { "kind": "scalar", "type": "string", "name": "value" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_STATUS",
+      "direction": "server_to_client",
+      "header": 6100,
+      "csharp": { "symbol": "PhoneStatusComposer", "className": "PhoneStatusComposer", "path": "../DistrictRP.Server/Modules/Phone/PhoneComposers.cs" },
+      "typescript": { "symbol": "RP_PHONE_STATUS", "className": "RpPhoneStatusParser", "path": "packages/communication/src/messages/parser/rp/RpPhoneStatusParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "result" },
+        { "kind": "scalar", "type": "string", "name": "message" },
+        { "kind": "scalar", "type": "int", "name": "hasSim" },
+        { "kind": "scalar", "type": "string", "name": "number" },
+        { "kind": "scalar", "type": "int", "name": "load" },
+        { "kind": "scalar", "type": "string", "name": "hospitalNumber" },
+        { "kind": "scalar", "type": "string", "name": "policeNumber" },
+        { "kind": "scalar", "type": "int", "name": "messageCost" },
+        { "kind": "scalar", "type": "int", "name": "callCost" },
+        { "kind": "scalar", "type": "int", "name": "callPeriodSeconds" },
+        { "kind": "scalar", "type": "int", "name": "shareLocation" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_CALL_ACTION",
+      "direction": "client_to_server",
+      "header": 6101,
+      "csharp": { "symbol": "CallHandler", "className": "CallHandler", "path": "../DistrictRP.Server/Modules/Phone/PhoneModule.cs" },
+      "typescript": { "symbol": "RP_PHONE_CALL_ACTION", "className": "RpPhoneCallActionComposer", "path": "packages/communication/src/messages/outgoing/rp/RpPhoneCallActionComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "action" },
+        { "kind": "scalar", "type": "string", "name": "number" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_CALL",
+      "direction": "server_to_client",
+      "header": 6101,
+      "csharp": { "symbol": "PhoneCallComposer", "className": "PhoneCallComposer", "path": "../DistrictRP.Server/Modules/Phone/PhoneComposers.cs" },
+      "typescript": { "symbol": "RP_PHONE_CALL", "className": "RpPhoneCallParser", "path": "packages/communication/src/messages/parser/rp/RpPhoneCallParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "state" },
+        { "kind": "scalar", "type": "string", "name": "callId" },
+        { "kind": "scalar", "type": "string", "name": "peerName" },
+        { "kind": "scalar", "type": "string", "name": "peerNumber" },
+        { "kind": "scalar", "type": "int", "name": "seconds" },
+        { "kind": "scalar", "type": "string", "name": "notice" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_OFFER_RESPONSE",
+      "direction": "client_to_server",
+      "header": 6102,
+      "csharp": { "symbol": "OfferHandler", "className": "OfferHandler", "path": "../DistrictRP.Server/Modules/Phone/PhoneModule.cs" },
+      "typescript": { "symbol": "RP_PHONE_OFFER_RESPONSE", "className": "RpPhoneOfferResponseComposer", "path": "packages/communication/src/messages/outgoing/rp/RpPhoneOfferResponseComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "string", "name": "offerId" },
+        { "kind": "scalar", "type": "int", "name": "accepted" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_OFFER",
+      "direction": "server_to_client",
+      "header": 6102,
+      "csharp": { "symbol": "PhoneOfferComposer", "className": "PhoneOfferComposer", "path": "../DistrictRP.Server/Modules/Phone/PhoneComposers.cs" },
+      "typescript": { "symbol": "RP_PHONE_OFFER", "className": "RpPhoneOfferParser", "path": "packages/communication/src/messages/parser/rp/RpPhoneOfferParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "state" },
+        { "kind": "scalar", "type": "string", "name": "offerId" },
+        { "kind": "scalar", "type": "string", "name": "item" },
+        { "kind": "scalar", "type": "int", "name": "amount" },
+        { "kind": "scalar", "type": "int", "name": "price" },
+        { "kind": "scalar", "type": "string", "name": "seller" },
+        { "kind": "scalar", "type": "int", "name": "expiresInMs" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_CALL_LINE",
+      "direction": "server_to_client",
+      "header": 6103,
+      "csharp": { "symbol": "PhoneCallLineComposer", "className": "PhoneCallLineComposer", "path": "../DistrictRP.Server/Modules/Phone/PhoneComposers.cs" },
+      "typescript": { "symbol": "RP_PHONE_CALL_LINE", "className": "RpPhoneCallLineParser", "path": "packages/communication/src/messages/parser/rp/RpPhoneCallLineParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "string", "name": "callId" },
+        { "kind": "scalar", "type": "int", "name": "fromSelf" },
+        { "kind": "scalar", "type": "string", "name": "speaker" },
+        { "kind": "scalar", "type": "string", "name": "text" }
+      ]
+    },
+    {
+      "name": "RP_PHONE_HISTORY",
+      "direction": "server_to_client",
+      "header": 6104,
+      "csharp": { "symbol": "PhoneHistoryComposer", "className": "PhoneHistoryComposer", "path": "../DistrictRP.Server/Modules/Phone/PhoneComposers.cs" },
+      "typescript": { "symbol": "RP_PHONE_HISTORY", "className": "RpPhoneHistoryParser", "path": "packages/communication/src/messages/parser/rp/RpPhoneHistoryParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        {
+          "kind": "list",
+          "countType": "int",
+          "item": [
+            { "kind": "scalar", "type": "int", "name": "outgoing" },
+            { "kind": "scalar", "type": "int", "name": "answered" },
+            { "kind": "scalar", "type": "string", "name": "peerName" },
+            { "kind": "scalar", "type": "string", "name": "peerNumber" },
+            { "kind": "scalar", "type": "int", "name": "agoSeconds" },
+            { "kind": "scalar", "type": "int", "name": "durationSeconds" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RP_PHONE_LOCATION",
+      "direction": "server_to_client",
+      "header": 6105,
+      "csharp": { "symbol": "PhoneLocationComposer", "className": "PhoneLocationComposer", "path": "../DistrictRP.Server/Modules/Phone/PhoneComposers.cs" },
+      "typescript": { "symbol": "RP_PHONE_LOCATION", "className": "RpPhoneLocationParser", "path": "packages/communication/src/messages/parser/rp/RpPhoneLocationParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "userId" },
+        { "kind": "scalar", "type": "int", "name": "state" },
+        { "kind": "scalar", "type": "string", "name": "roomName" },
+        { "kind": "scalar", "type": "string", "name": "message" }
       ]
     },
     {

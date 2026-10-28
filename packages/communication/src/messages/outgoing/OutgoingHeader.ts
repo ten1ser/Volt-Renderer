@@ -7,6 +7,10 @@ export class OutgoingHeader
     public static RP_BUSINESS_REQUEST = 6070;
     public static RP_HEAL_RESPONSE = 6071;
     public static RP_INVENTORY_REQUEST = 6080;
+    public static RP_PROFILE_REQUEST = 6090;
+    public static RP_PHONE_REQUEST = 6100;
+    public static RP_PHONE_CALL_ACTION = 6101;
+    public static RP_PHONE_OFFER_RESPONSE = 6102;
     public static WIRED_VARIABLE_INSPECTION_REQUEST = 10112;
     public static WIRED_USER_VARIABLES_REQUEST_64 = 10113;
     public static WIRED_VARIABLE_HOLDERS_REQUEST_64 = 10114;
