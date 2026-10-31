@@ -11,6 +11,7 @@ export class OutgoingHeader
     public static RP_PHONE_REQUEST = 6100;
     public static RP_PHONE_CALL_ACTION = 6101;
     public static RP_PHONE_OFFER_RESPONSE = 6102;
+    public static RP_GANG_REQUEST = 6110;
     public static WIRED_VARIABLE_INSPECTION_REQUEST = 10112;
     public static WIRED_USER_VARIABLES_REQUEST_64 = 10113;
     public static WIRED_VARIABLE_HOLDERS_REQUEST_64 = 10114;

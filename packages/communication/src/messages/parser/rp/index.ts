@@ -12,3 +12,4 @@ export * from './RpPhoneOfferParser';
 export * from './RpPhoneCallLineParser';
 export * from './RpPhoneHistoryParser';
 export * from './RpPhoneLocationParser';
+export * from './RpGangParser';

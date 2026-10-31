@@ -36,6 +36,7 @@ import { RpHealOfferEvent } from './messages';
 import { RpHealResponseComposer } from './messages';
 import { RpInventoryEvent, RpInventoryRequestComposer, RpProfileEvent, RpProfileRequestComposer } from './messages';
 import { RpPhoneCallActionComposer, RpPhoneCallEvent, RpPhoneCallLineEvent, RpPhoneHistoryEvent, RpPhoneLocationEvent, RpPhoneOfferEvent, RpPhoneOfferResponseComposer, RpPhoneRequestComposer, RpPhoneStatusEvent } from './messages';
+import { RpGangEvent, RpGangRequestComposer } from './messages';
 
 
 import { CatalogProductMetadataEvent } from './messages/incoming/catalog/metadata';
@@ -80,6 +81,7 @@ export class VoltMessages implements IMessageConfiguration
         this._events.set(IncomingHeader.RP_PHONE_CALL_LINE, RpPhoneCallLineEvent);
         this._events.set(IncomingHeader.RP_PHONE_HISTORY, RpPhoneHistoryEvent);
         this._events.set(IncomingHeader.RP_PHONE_LOCATION, RpPhoneLocationEvent);
+        this._events.set(IncomingHeader.RP_GANG, RpGangEvent);
         // ADVERTISEMENT
         this._events.set(IncomingHeader.INTERSTITIAL_MESSAGE, InterstitialMessageEvent);
         this._events.set(IncomingHeader.ROOM_AD_ERROR, RoomAdErrorEvent);
@@ -825,6 +827,7 @@ export class VoltMessages implements IMessageConfiguration
         this._composers.set(OutgoingHeader.RP_PHONE_REQUEST, RpPhoneRequestComposer);
         this._composers.set(OutgoingHeader.RP_PHONE_CALL_ACTION, RpPhoneCallActionComposer);
         this._composers.set(OutgoingHeader.RP_PHONE_OFFER_RESPONSE, RpPhoneOfferResponseComposer);
+        this._composers.set(OutgoingHeader.RP_GANG_REQUEST, RpGangRequestComposer);
         this._events.set(IncomingHeader.ALLOWED_CHAT_STYLES, AllowedChatStylesMessageEvent);
         this._events.set(IncomingHeader.CREATABLE_ROOM_MODELS, CreatableRoomModelsMessageEvent);
 

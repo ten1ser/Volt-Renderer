@@ -9,3 +9,4 @@ export * from './RpProfileRequestComposer';
 export * from './RpPhoneRequestComposer';
 export * from './RpPhoneCallActionComposer';
 export * from './RpPhoneOfferResponseComposer';
+export * from './RpGangRequestComposer';

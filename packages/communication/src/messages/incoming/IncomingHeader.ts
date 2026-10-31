@@ -14,6 +14,7 @@ export class IncomingHeader
     public static RP_PHONE_CALL_LINE = 6103;
     public static RP_PHONE_HISTORY = 6104;
     public static RP_PHONE_LOCATION = 6105;
+    public static RP_GANG = 6110;
     public static WIRED_VARIABLE_INSPECTION_DATA = 9483;
     public static WIRED_USER_VARIABLES_DATA_64 = 9480;
     public static WIRED_VARIABLE_HOLDERS_64 = 9481;

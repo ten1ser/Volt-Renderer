@@ -12,3 +12,4 @@ export * from './RpPhoneOfferEvent';
 export * from './RpPhoneCallLineEvent';
 export * from './RpPhoneHistoryEvent';
 export * from './RpPhoneLocationEvent';
+export * from './RpGangEvent';
