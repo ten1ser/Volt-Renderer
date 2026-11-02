@@ -795,7 +795,55 @@
         { "kind": "scalar", "type": "string", "name": "json" }
       ]
     },
+        {
+      "name": "RP_RADIO_REQUEST",
+      "direction": "client_to_server",
+      "header": 6120,
+      "csharp": { "symbol": "RadioRequestHandler", "className": "RadioRequestHandler", "path": "../DistrictRP.Server/Modules/Radio/RadioModule.cs" },
+      "typescript": { "symbol": "RP_RADIO_REQUEST", "className": "RpRadioRequestComposer", "path": "packages/communication/src/messages/outgoing/rp/RpRadioRequestComposer.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "action" },
+        { "kind": "scalar", "type": "int", "name": "channel" },
+        { "kind": "scalar", "type": "int", "name": "frequency" },
+        { "kind": "scalar", "type": "string", "name": "text" }
+      ]
+    },
     {
+      "name": "RP_RADIO_STATUS",
+      "direction": "server_to_client",
+      "header": 6120,
+      "csharp": { "symbol": "RadioStatusComposer", "className": "RadioStatusComposer", "path": "../DistrictRP.Server/Modules/Radio/RadioComposers.cs" },
+      "typescript": { "symbol": "RP_RADIO_STATUS", "className": "RpRadioStatusParser", "path": "packages/communication/src/messages/parser/rp/RpRadioStatusParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "requestId" },
+        { "kind": "scalar", "type": "int", "name": "result" },
+        { "kind": "scalar", "type": "string", "name": "notice" },
+        { "kind": "scalar", "type": "int", "name": "powered" },
+        { "kind": "scalar", "type": "int", "name": "channel" },
+        { "kind": "scalar", "type": "int", "name": "frequency" },
+        { "kind": "scalar", "type": "string", "name": "channelLabel" },
+        { "kind": "scalar", "type": "int", "name": "hospitalAccess" },
+        { "kind": "scalar", "type": "int", "name": "gangAccess" }
+      ]
+    },
+    {
+      "name": "RP_RADIO_TRANSMISSION",
+      "direction": "server_to_client",
+      "header": 6121,
+      "csharp": { "symbol": "RadioTransmissionComposer", "className": "RadioTransmissionComposer", "path": "../DistrictRP.Server/Modules/Radio/RadioComposers.cs" },
+      "typescript": { "symbol": "RP_RADIO_TRANSMISSION", "className": "RpRadioTransmissionParser", "path": "packages/communication/src/messages/parser/rp/RpRadioTransmissionParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "channel" },
+        { "kind": "scalar", "type": "int", "name": "frequency" },
+        { "kind": "scalar", "type": "string", "name": "channelLabel" },
+        { "kind": "scalar", "type": "int", "name": "senderId" },
+        { "kind": "scalar", "type": "string", "name": "senderName" },
+        { "kind": "scalar", "type": "string", "name": "senderRank" },
+        { "kind": "scalar", "type": "string", "name": "text" },
+        { "kind": "scalar", "type": "int", "name": "sentAt" }
+      ]
+    },{
       "name": "RP_HOSPITAL_TREATMENT_REQUEST",
       "direction": "client_to_server",
       "header": 6060,

@@ -13,3 +13,5 @@ export * from './RpPhoneCallLineEvent';
 export * from './RpPhoneHistoryEvent';
 export * from './RpPhoneLocationEvent';
 export * from './RpGangEvent';
+export * from './RpRadioStatusEvent';
+export * from './RpRadioTransmissionEvent';

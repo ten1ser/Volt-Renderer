@@ -13,3 +13,5 @@ export * from './RpPhoneCallLineParser';
 export * from './RpPhoneHistoryParser';
 export * from './RpPhoneLocationParser';
 export * from './RpGangParser';
+export * from './RpRadioStatusParser';
+export * from './RpRadioTransmissionParser';
