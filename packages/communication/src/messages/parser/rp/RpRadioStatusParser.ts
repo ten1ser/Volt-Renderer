@@ -4,6 +4,7 @@ const NOTICE_LENGTH = 200;
 const LABEL_LENGTH = 40;
 const PUBLIC_MIN = 1001;
 const PUBLIC_MAX = 9999;
+const LISTENERS_MAX = 100000;
 
 const isFlag = (value: number): boolean => value === 0 || value === 1;
 const isChannel = (value: number): boolean => value === 0 || value === 1 || value === 2;
@@ -22,6 +23,7 @@ export class RpRadioStatusParser implements IMessageParser
     private _channelLabel = '';
     private _hospitalAccess = false;
     private _gangAccess = false;
+    private _listeners = 0;
 
     public flush(): boolean
     {
@@ -34,6 +36,7 @@ export class RpRadioStatusParser implements IMessageParser
         this._channelLabel = '';
         this._hospitalAccess = false;
         this._gangAccess = false;
+        this._listeners = 0;
         return true;
     }
 
@@ -63,6 +66,7 @@ export class RpRadioStatusParser implements IMessageParser
         const channelLabel = wrapper.readString();
         const hospitalAccess = wrapper.readInt();
         const gangAccess = wrapper.readInt();
+        const listeners = wrapper.readInt();
         if(wrapper.bytesAvailable) return false;
         if(!Number.isInteger(requestId) || requestId < 0) return false;
         if(!isFlag(result) || !isFlag(powered) || !isChannel(channel)) return false;
@@ -70,6 +74,8 @@ export class RpRadioStatusParser implements IMessageParser
         if(typeof notice !== 'string' || notice.length > NOTICE_LENGTH) return false;
         if(typeof channelLabel !== 'string' || channelLabel.length > LABEL_LENGTH) return false;
         if(!isFrequency(channel, frequency)) return false;
+        // Powered radios on the same channel, this one included; 0 while switched off.
+        if(!Number.isInteger(listeners) || listeners < 0 || listeners > LISTENERS_MAX || (powered === 0 && listeners !== 0)) return false;
         this._requestId = requestId;
         this._refused = result === 1;
         this._notice = notice;
@@ -79,6 +85,7 @@ export class RpRadioStatusParser implements IMessageParser
         this._channelLabel = channelLabel;
         this._hospitalAccess = hospitalAccess === 1;
         this._gangAccess = gangAccess === 1;
+        this._listeners = listeners;
         return true;
     }
 
@@ -91,4 +98,5 @@ export class RpRadioStatusParser implements IMessageParser
     public get channelLabel(): string { return this._channelLabel; }
     public get hospitalAccess(): boolean { return this._hospitalAccess; }
     public get gangAccess(): boolean { return this._gangAccess; }
+    public get listeners(): number { return this._listeners; }
 }

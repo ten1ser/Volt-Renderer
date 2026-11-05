@@ -38,6 +38,7 @@ import { RpInventoryEvent, RpInventoryRequestComposer, RpProfileEvent, RpProfile
 import { RpPhoneCallActionComposer, RpPhoneCallEvent, RpPhoneCallLineEvent, RpPhoneHistoryEvent, RpPhoneLocationEvent, RpPhoneOfferEvent, RpPhoneOfferResponseComposer, RpPhoneRequestComposer, RpPhoneStatusEvent } from './messages';
 import { RpGangEvent, RpGangRequestComposer } from './messages';
 import { RpRadioRequestComposer, RpRadioStatusEvent, RpRadioTransmissionEvent } from './messages';
+import { RpActionProgressEvent, RpFeedLineEvent } from './messages';
 
 
 import { CatalogProductMetadataEvent } from './messages/incoming/catalog/metadata';
@@ -85,6 +86,8 @@ export class VoltMessages implements IMessageConfiguration
         this._events.set(IncomingHeader.RP_GANG, RpGangEvent);
         this._events.set(IncomingHeader.RP_RADIO_STATUS, RpRadioStatusEvent);
         this._events.set(IncomingHeader.RP_RADIO_TRANSMISSION, RpRadioTransmissionEvent);
+        this._events.set(IncomingHeader.RP_FEED_LINE, RpFeedLineEvent);
+        this._events.set(IncomingHeader.RP_ACTION_PROGRESS, RpActionProgressEvent);
         // ADVERTISEMENT
         this._events.set(IncomingHeader.INTERSTITIAL_MESSAGE, InterstitialMessageEvent);
         this._events.set(IncomingHeader.ROOM_AD_ERROR, RoomAdErrorEvent);

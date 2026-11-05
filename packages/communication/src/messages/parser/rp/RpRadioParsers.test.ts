@@ -15,7 +15,7 @@ const wrapper = (values: (number | string)[], extra = false) =>
 const replace = (values: (number | string)[], index: number, value: number | string) =>
     values.map((item, at) => (at === index ? value : item));
 
-const STATUS: (number | string)[] = [7, 0, '', 1, 0, 1234, 'Public', 1, 0];
+const STATUS: (number | string)[] = [7, 0, '', 1, 0, 1234, 'Public', 1, 0, 3];
 const TRANSMISSION: (number | string)[] = [0, 1234, 'Public', 5, 'alice', '', 'meet at the bank', 1700000000];
 describe('Radio protocol', () =>
 {
@@ -31,9 +31,9 @@ describe('Radio protocol', () =>
         const parser = new RpRadioStatusParser();
         expect(parser.parse(wrapper(STATUS))).toBe(true);
         expect([parser.requestId, parser.refused, parser.notice, parser.powered, parser.channel, parser.frequency]).toEqual([7, false, '', true, 0, 1234]);
-        expect([parser.channelLabel, parser.hospitalAccess, parser.gangAccess]).toEqual(['Public', true, false]);
+        expect([parser.channelLabel, parser.hospitalAccess, parser.gangAccess, parser.listeners]).toEqual(['Public', true, false, 3]);
 
-        expect(parser.parse(wrapper([8, 1, 'On duty only.', 0, 1, 0, 'Hospital', 1, 0]))).toBe(true);
+        expect(parser.parse(wrapper([8, 1, 'On duty only.', 0, 1, 0, 'Hospital', 1, 0, 0]))).toBe(true);
         expect([parser.refused, parser.powered, parser.channel, parser.frequency, parser.channelLabel, parser.hospitalAccess])
             .toEqual([true, false, 1, 0, 'Hospital', true]);
 
@@ -46,12 +46,15 @@ describe('Radio protocol', () =>
         expect(parser.parse(wrapper(replace(replace(STATUS, 4, 1), 5, 1234)))).toBe(false);
         expect(parser.parse(wrapper(replace(STATUS, 6, 'x'.repeat(41))))).toBe(false);
         expect(parser.parse(wrapper(replace(STATUS, 7, 2)))).toBe(false);
+        expect(parser.parse(wrapper(replace(STATUS, 9, -1)))).toBe(false);
+        expect(parser.parse(wrapper(replace(STATUS, 9, 1.5)))).toBe(false);
+        expect(parser.parse(wrapper(replace(replace(STATUS, 3, 0), 9, 2)))).toBe(false);
         expect(parser.parse(wrapper(STATUS, true))).toBe(false);
         expect([parser.requestId, parser.channel]).toEqual([0, 0]);
 
         expect(parser.parse(wrapper(STATUS))).toBe(true);
         expect(parser.flush()).toBe(true);
-        expect([parser.requestId, parser.powered, parser.frequency, parser.channelLabel]).toEqual([0, false, 1001, '']);
+        expect([parser.requestId, parser.powered, parser.frequency, parser.channelLabel, parser.listeners]).toEqual([0, false, 1001, '', 0]);
     });
     it('reads real transmissions with server-owned identity and channel', () =>
     {

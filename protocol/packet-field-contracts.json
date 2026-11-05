@@ -824,7 +824,8 @@
         { "kind": "scalar", "type": "int", "name": "frequency" },
         { "kind": "scalar", "type": "string", "name": "channelLabel" },
         { "kind": "scalar", "type": "int", "name": "hospitalAccess" },
-        { "kind": "scalar", "type": "int", "name": "gangAccess" }
+        { "kind": "scalar", "type": "int", "name": "gangAccess" },
+        { "kind": "scalar", "type": "int", "name": "listeners" }
       ]
     },
     {
@@ -842,6 +843,30 @@
         { "kind": "scalar", "type": "string", "name": "senderRank" },
         { "kind": "scalar", "type": "string", "name": "text" },
         { "kind": "scalar", "type": "int", "name": "sentAt" }
+      ]
+    },
+    {
+      "name": "RP_FEED_LINE",
+      "direction": "server_to_client",
+      "header": 6130,
+      "csharp": { "symbol": "FeedLineComposer", "className": "FeedLineComposer", "path": "../DistrictRP.Server/Modules/Feed/FeedProtocol.cs" },
+      "typescript": { "symbol": "RP_FEED_LINE", "className": "RpFeedLineParser", "path": "packages/communication/src/messages/parser/rp/RpFeedLineParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "kind" },
+        { "kind": "scalar", "type": "string", "name": "actorName" },
+        { "kind": "scalar", "type": "string", "name": "targetName" },
+        { "kind": "scalar", "type": "string", "name": "detail" }
+      ]
+    },
+    {
+      "name": "RP_ACTION_PROGRESS",
+      "direction": "server_to_client",
+      "header": 6131,
+      "csharp": { "symbol": "ActionProgressComposer", "className": "ActionProgressComposer", "path": "../DistrictRP.Server/Modules/Feed/FeedProtocol.cs" },
+      "typescript": { "symbol": "RP_ACTION_PROGRESS", "className": "RpActionProgressParser", "path": "packages/communication/src/messages/parser/rp/RpActionProgressParser.ts" },
+      "fields": [
+        { "kind": "scalar", "type": "int", "name": "kind" },
+        { "kind": "scalar", "type": "int", "name": "durationMs" }
       ]
     },{
       "name": "RP_HOSPITAL_TREATMENT_REQUEST",
