@@ -633,7 +633,9 @@
         { "kind": "scalar", "type": "int", "name": "punchesReceived" },
         { "kind": "scalar", "type": "int", "name": "timesJailed" },
         { "kind": "scalar", "type": "string", "name": "jobBadge" },
-        { "kind": "scalar", "type": "string", "name": "gangBadge" }
+        { "kind": "scalar", "type": "string", "name": "gangBadge" },
+        { "kind": "scalar", "type": "int", "name": "onDuty" },
+        { "kind": "scalar", "type": "string", "name": "gangRank" }
       ]
     },
     {

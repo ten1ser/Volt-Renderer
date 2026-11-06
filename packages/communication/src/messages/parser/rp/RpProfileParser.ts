@@ -23,6 +23,8 @@ export class RpProfileParser implements IMessageParser
     private _timesJailed = 0;
     private _jobBadge = '';
     private _gangBadge = '';
+    private _onDuty = false;
+    private _gangRank = '';
 
     public flush(): boolean
     {
@@ -40,6 +42,8 @@ export class RpProfileParser implements IMessageParser
         this._timesJailed = 0;
         this._jobBadge = '';
         this._gangBadge = '';
+        this._onDuty = false;
+        this._gangRank = '';
         return true;
     }
 
@@ -84,10 +88,21 @@ export class RpProfileParser implements IMessageParser
             gangBadge = wrapper.readString();
         }
 
+        // Duty state and gang rank are a second optional trailing pair, after the badges.
+        let onDuty = 0;
+        let gangRank = '';
+
+        if(wrapper.bytesAvailable)
+        {
+            onDuty = wrapper.readInt();
+            gangRank = wrapper.readString();
+        }
+
         if(wrapper.bytesAvailable) return false;
         if(!Number.isInteger(requestId) || requestId <= 0 || !Number.isInteger(userId) || userId <= 0) return false;
         if(available !== 0 && available !== 1) return false;
-        if(![gang, job, rank].every(validText)) return false;
+        if(![gang, job, rank, gangRank].every(validText)) return false;
+        if(onDuty !== 0 && onDuty !== 1) return false;
         if(![kills, deaths, punchesThrown, punchesMissed, punchesReceived, timesJailed].every(validCount)) return false;
         if(!validBadge(jobBadge) || !validBadge(gangBadge)) return false;
         if(punchesMissed > punchesThrown) return false;
@@ -105,6 +120,8 @@ export class RpProfileParser implements IMessageParser
         this._timesJailed = timesJailed;
         this._jobBadge = jobBadge;
         this._gangBadge = gangBadge;
+        this._onDuty = onDuty === 1;
+        this._gangRank = gangRank;
         return true;
     }
 
@@ -122,4 +139,6 @@ export class RpProfileParser implements IMessageParser
     public get timesJailed(): number { return this._timesJailed; }
     public get jobBadge(): string { return this._jobBadge; }
     public get gangBadge(): string { return this._gangBadge; }
+    public get onDuty(): boolean { return this._onDuty; }
+    public get gangRank(): string { return this._gangRank; }
 }

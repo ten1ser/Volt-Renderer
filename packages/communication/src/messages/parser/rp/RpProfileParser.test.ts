@@ -59,6 +59,21 @@ describe('Profile protocol', () =>
         expect([parser.jobBadge, parser.gangBadge]).toEqual(['', '']);
     });
 
+    it('reads the optional trailing duty state and gang rank and rejects bad values', () =>
+    {
+        const parser = new RpProfileParser();
+        expect(parser.parse(wrapper([...CARD, 'b-hospital', 'b-gang', 1, 'Enforcer']))).toBe(true);
+        expect([parser.onDuty, parser.gangRank]).toEqual([true, 'Enforcer']);
+
+        expect(parser.parse(wrapper([...CARD, 'b-hospital', 'b-gang']))).toBe(true);
+        expect([parser.onDuty, parser.gangRank]).toEqual([false, '']);
+
+        expect(parser.parse(wrapper([...CARD, 'b-hospital', 'b-gang', 2, 'Enforcer']))).toBe(false);
+        expect(parser.parse(wrapper([...CARD, 'b-hospital', 'b-gang', 1, 'x'.repeat(65)]))).toBe(false);
+        expect(parser.parse(wrapper([...CARD, 'b-hospital', 'b-gang', 1]))).toBe(false);
+        expect([parser.onDuty, parser.gangRank]).toEqual([false, '']);
+    });
+
     it('rejects partial, invalid, oversized and overlong badge fields and resets them', () =>
     {
         const parser = new RpProfileParser();
