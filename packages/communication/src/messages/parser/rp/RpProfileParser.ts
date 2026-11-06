@@ -1,8 +1,10 @@
 import { IMessageDataWrapper, IMessageParser } from '@volt/api';
 
 const TEXT_LENGTH = 64;
+const BADGE_LENGTH = 256;
 
 const validText = (value: unknown): value is string => typeof value === 'string' && value.length <= TEXT_LENGTH;
+const validBadge = (value: unknown): value is string => typeof value === 'string' && value.length <= BADGE_LENGTH && /^[A-Za-z0-9_-]*$/.test(value);
 const validCount = (value: number): boolean => Number.isInteger(value) && value >= 0;
 
 export class RpProfileParser implements IMessageParser
@@ -19,6 +21,8 @@ export class RpProfileParser implements IMessageParser
     private _punchesMissed = 0;
     private _punchesReceived = 0;
     private _timesJailed = 0;
+    private _jobBadge = '';
+    private _gangBadge = '';
 
     public flush(): boolean
     {
@@ -34,6 +38,8 @@ export class RpProfileParser implements IMessageParser
         this._punchesMissed = 0;
         this._punchesReceived = 0;
         this._timesJailed = 0;
+        this._jobBadge = '';
+        this._gangBadge = '';
         return true;
     }
 
@@ -67,11 +73,23 @@ export class RpProfileParser implements IMessageParser
         const punchesMissed = wrapper.readInt();
         const punchesReceived = wrapper.readInt();
         const timesJailed = wrapper.readInt();
+
+        // The affiliation badges are an optional trailing pair: legacy replies stop after timesJailed.
+        let jobBadge = '';
+        let gangBadge = '';
+
+        if(wrapper.bytesAvailable)
+        {
+            jobBadge = wrapper.readString();
+            gangBadge = wrapper.readString();
+        }
+
         if(wrapper.bytesAvailable) return false;
         if(!Number.isInteger(requestId) || requestId <= 0 || !Number.isInteger(userId) || userId <= 0) return false;
         if(available !== 0 && available !== 1) return false;
         if(![gang, job, rank].every(validText)) return false;
         if(![kills, deaths, punchesThrown, punchesMissed, punchesReceived, timesJailed].every(validCount)) return false;
+        if(!validBadge(jobBadge) || !validBadge(gangBadge)) return false;
         if(punchesMissed > punchesThrown) return false;
         this._requestId = requestId;
         this._userId = userId;
@@ -85,6 +103,8 @@ export class RpProfileParser implements IMessageParser
         this._punchesMissed = punchesMissed;
         this._punchesReceived = punchesReceived;
         this._timesJailed = timesJailed;
+        this._jobBadge = jobBadge;
+        this._gangBadge = gangBadge;
         return true;
     }
 
@@ -100,4 +120,6 @@ export class RpProfileParser implements IMessageParser
     public get punchesMissed(): number { return this._punchesMissed; }
     public get punchesReceived(): number { return this._punchesReceived; }
     public get timesJailed(): number { return this._timesJailed; }
+    public get jobBadge(): string { return this._jobBadge; }
+    public get gangBadge(): string { return this._gangBadge; }
 }

@@ -14,8 +14,16 @@ const CARD: Card = [7, 5, 1, 'Southside Kings', 'Hospital', 'Trainee', 12, 4, 24
 const wrapper = (values: (number | string)[], extra = false) =>
 {
     let index = 0;
-    const next = () => values[index++];
-    return { readInt: next, readString: next, bytesAvailable: extra } as unknown as IMessageDataWrapper;
+    const next = () =>
+    {
+        if(index >= values.length) throw new Error('truncated');
+        return values[index++];
+    };
+    return {
+        readInt: next,
+        readString: next,
+        get bytesAvailable() { return extra || index < values.length; }
+    } as unknown as IMessageDataWrapper;
 };
 
 const withField = (index: number, value: number | string): Card =>
@@ -39,6 +47,34 @@ describe('Profile protocol', () =>
         expect(OutgoingHeader.RP_PROFILE_REQUEST).toBe(6090);
         expect(messages.events.get(6090)).toBe(RpProfileEvent);
         expect(messages.composers.get(6090)).toBe(RpProfileRequestComposer);
+    });
+
+    it('reads the optional trailing affiliation badges and defaults them for legacy replies', () =>
+    {
+        const parser = new RpProfileParser();
+        expect(parser.parse(wrapper([...CARD, 'b-hospital', 'b-gang']))).toBe(true);
+        expect([parser.jobBadge, parser.gangBadge]).toEqual(['b-hospital', 'b-gang']);
+
+        expect(parser.parse(wrapper(CARD))).toBe(true);
+        expect([parser.jobBadge, parser.gangBadge]).toEqual(['', '']);
+    });
+
+    it('rejects partial, invalid, oversized and overlong badge fields and resets them', () =>
+    {
+        const parser = new RpProfileParser();
+
+        expect(parser.parse(wrapper([...CARD, 'b-job']))).toBe(false);
+        expect([parser.jobBadge, parser.gangBadge]).toEqual(['', '']);
+
+        for(const badge of [ 'has/slash', '<b>', 'query?x', 'with space', 'x'.repeat(257) ])
+        {
+            expect(parser.parse(wrapper([...CARD, 'b-job', badge]))).toBe(false);
+            expect([parser.jobBadge, parser.gangBadge]).toEqual(['', '']);
+        }
+
+        expect(parser.parse(wrapper([...CARD, 'b-job', 'b-gang'], true))).toBe(false);
+        expect(parser.parse(wrapper([...CARD, 'b-job', 'b-gang', 'extra']))).toBe(false);
+        expect([parser.jobBadge, parser.gangBadge]).toEqual(['', '']);
     });
 
     it('rejects malformed cards and resets to defaults', () =>
